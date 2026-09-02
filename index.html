@@ -57,6 +57,23 @@
         padding: 1.5rem;
       }
 
+      .summary-grid {
+        display: grid;
+        gap: 1rem;
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .summary-card {
+        background: #eef6fb;
+        border-radius: 0.5rem;
+        padding: 1rem;
+      }
+
+      .summary-card strong {
+        display: block;
+        font-size: 1.5rem;
+      }
+
       form {
         display: grid;
         gap: 1rem;
@@ -132,6 +149,10 @@
 
       @media (max-width: 42rem) {
         form {
+          grid-template-columns: 1fr;
+        }
+
+        .summary-grid {
           grid-template-columns: 1fr;
         }
 
@@ -212,6 +233,30 @@
           </tfoot>
         </table>
       </section>
+
+      <section aria-labelledby="summary-heading">
+        <h2 id="summary-heading">Gesamtertrag</h2>
+        <div class="summary-grid">
+          <div class="summary-card">
+            <span>Gesamtwert aller Jahre</span>
+            <strong id="all-time-total">0,00 kWh</strong>
+          </div>
+          <div class="summary-card">
+            <span>Jahreswert <span id="summary-year"></span></span>
+            <strong id="summary-year-total">0,00 kWh</strong>
+          </div>
+        </div>
+        <table>
+          <caption>Ertrag je Jahr</caption>
+          <thead>
+            <tr>
+              <th scope="col">Jahr</th>
+              <th scope="col">Jahreswert</th>
+            </tr>
+          </thead>
+          <tbody id="annual-overview"></tbody>
+        </table>
+      </section>
     </main>
 
     <script>
@@ -239,6 +284,10 @@
       const overview = document.querySelector("#overview");
       const yearTotal = document.querySelector("#year-total");
       const tableCaption = document.querySelector("#table-caption");
+      const allTimeTotal = document.querySelector("#all-time-total");
+      const summaryYear = document.querySelector("#summary-year");
+      const summaryYearTotal = document.querySelector("#summary-year-total");
+      const annualOverview = document.querySelector("#annual-overview");
       const status = document.querySelector("#status");
 
       function loadEntries() {
@@ -271,6 +320,13 @@
         const entries = loadEntries();
         renderYears(entries);
         const selectedYear = displayYear.value;
+        const annualTotals = {};
+        Object.entries(entries).forEach(([key, value]) => {
+          const year = key.slice(0, 4);
+          if (typeof value === "number" && Number.isFinite(value)) {
+            annualTotals[year] = (annualTotals[year] || 0) + value;
+          }
+        });
         let total = 0;
         overview.replaceChildren(
           ...monthNames.map((name, index) => {
@@ -284,6 +340,22 @@
         );
         tableCaption.textContent = `Ertrag im Jahr ${selectedYear}`;
         yearTotal.textContent = formatEnergy(total);
+        allTimeTotal.textContent = formatEnergy(
+          Object.values(annualTotals).reduce((sum, value) => sum + value, 0),
+        );
+        summaryYear.textContent = selectedYear;
+        summaryYearTotal.textContent = formatEnergy(annualTotals[selectedYear] || 0);
+        annualTotals[selectedYear] = annualTotals[selectedYear] || 0;
+        annualOverview.replaceChildren(
+          ...Object.keys(annualTotals)
+            .sort()
+            .reverse()
+            .map((year) => {
+              const row = document.createElement("tr");
+              row.innerHTML = `<td>${year}</td><td>${formatEnergy(annualTotals[year])}</td>`;
+              return row;
+            }),
+        );
       }
 
       yearInput.value = now.getFullYear();
