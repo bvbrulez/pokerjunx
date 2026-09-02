@@ -1,6 +1,10 @@
 
 ## 2026-09-02
 
+- style: improve energy summary cards
+
+## 2026-09-02
+
 - feat: restrict energy input to authorized users
 # Änderungsprotokoll
 
