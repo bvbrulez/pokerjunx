@@ -1,0 +1,103 @@
+.summary-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.summary-card {
+  background: #eef6fb;
+  border-radius: 0.5rem;
+  padding: 1rem;
+}
+
+.summary-card strong {
+  display: block;
+  font-size: 1.5rem;
+}
+
+form {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+label {
+  display: grid;
+  font-weight: 600;
+  gap: 0.35rem;
+}
+
+input,
+select,
+button {
+  border: 1px solid #9bb8c7;
+  border-radius: 0.4rem;
+  font: inherit;
+  min-height: 2.7rem;
+  padding: 0.45rem 0.65rem;
+}
+
+button {
+  align-self: end;
+  background: #176b87;
+  border-color: #176b87;
+  color: white;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+button:hover,
+button:focus-visible {
+  background: #0f4e64;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+caption {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  text-align: left;
+}
+
+th,
+td {
+  border-bottom: 1px solid #d2e2eb;
+  padding: 0.65rem 0.4rem;
+  text-align: left;
+}
+
+th:last-child,
+td:last-child {
+  text-align: right;
+}
+
+tfoot td {
+  border-bottom: 0;
+  font-weight: 700;
+}
+
+.empty {
+  color: #60798a;
+}
+
+.status {
+  min-height: 1.5rem;
+}
+
+@media (max-width: 42rem) {
+  form {
+    grid-template-columns: 1fr;
+  }
+
+  .summary-grid {
+    grid-template-columns: 1fr;
+  }
+
+  button {
+    width: 100%;
+  }
+}

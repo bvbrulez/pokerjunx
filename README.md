@@ -31,7 +31,7 @@ Statische GitHub-Pages-Seite zur Erfassung monatlicher Energieerträge. Die Wert
      to anon using (true) with check (true);
    ```
 
-3. In `supabase-config.js` die Supabase-Projekt-URL und den **anon public key** eintragen.
+3. In `src/supabase-config.js` die Supabase-Projekt-URL und den **anon public key** eintragen.
 4. Änderungen committen und nach `main` pushen. Die GitHub-Action veröffentlicht die Seite anschließend automatisch.
 
 Der `anon`-Key darf in einer statischen Website veröffentlicht werden. Der `service_role`-Key darf niemals in diese Datei oder in den Browser gelangen.
