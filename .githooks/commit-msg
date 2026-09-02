@@ -1,0 +1,16 @@
+#!/bin/sh
+
+commit_message_file="$1"
+commit_message=$(sed '/^[[:space:]]*#/d' "$commit_message_file" | sed '/^[[:space:]]*$/d' | head -n 1)
+
+if printf '%s\n' "$commit_message" | grep -Eq '^(feat|fix|docs|style|refactor|test|chore|build|ci|perf|revert)(\([a-z0-9._/-]+\))?!?: .{1,72}$'; then
+  exit 0
+fi
+
+cat >&2 <<'EOF'
+Ungültige Commit-Message.
+Erwartetes Format: <typ>(<bereich>): <beschreibung>
+Beispiele: feat: neue Ertragsanzeige | fix(ui): korrigiere Eingabeprüfung
+Erlaubte Typen: feat, fix, docs, style, refactor, test, chore, build, ci, perf, revert
+EOF
+exit 1

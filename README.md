@@ -35,3 +35,14 @@ Statische GitHub-Pages-Seite zur Erfassung monatlicher Energieerträge. Die Wert
 4. Änderungen committen und nach `main` pushen. Die GitHub-Action veröffentlicht die Seite anschließend automatisch.
 
 Der `anon`-Key darf in einer statischen Website veröffentlicht werden. Der `service_role`-Key darf niemals in diese Datei oder in den Browser gelangen.
+
+## Commit-Messages
+
+Das Repository verwendet Conventional Commits. Den Hook einmalig für dieses Repository aktivieren:
+
+```sh
+git config core.hooksPath .githooks
+chmod +x .githooks/commit-msg
+```
+
+Erlaubte Formate sind beispielsweise `feat: neue Funktion`, `fix: fehler beheben` oder `docs: README aktualisieren`. Der passende Git-Hook für die Prüfung einer Commit-Message heißt `commit-msg`; `pre-commit` erhält die Commit-Message noch nicht.
