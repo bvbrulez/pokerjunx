@@ -1,7 +1,3 @@
-
-## 2026-09-02
-
-- feat: automate changelog updates before push
 # Änderungsprotokoll
 
 ## 2026-09-02
@@ -16,3 +12,7 @@
 - Supabase-Konfiguration für das Projekt hinterlegt.
 - Website nach `src` verschoben und Styles in separate Dateien ausgelagert.
 - JavaScript-Funktionen in `src/scripts/app.js` ausgelagert.
+- SVG-Favicon mit Sonne und Solarpanel ergänzt.
+- Changelog-Datei erstellt.
+- Commit-Message-Hook für Conventional Commits ergänzt.
+- Pre-Push-Hook zur automatischen Changelog-Pflege ergänzt.
