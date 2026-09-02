@@ -1,11 +1,4 @@
 
-## 2026-09-02
-
-- style: improve energy summary cards
-
-## 2026-09-02
-
-- feat: restrict energy input to authorized users
 # Änderungsprotokoll
 
 ## 2026-09-02
@@ -24,3 +17,5 @@
 - Changelog-Datei erstellt.
 - Commit-Message-Hook für Conventional Commits ergänzt.
 - Pre-Push-Hook zur automatischen Changelog-Pflege ergänzt.
+- Zugriff auf die Eingabemaske auf autorisierte Supabase-Nutzer beschränkt.
+- Darstellung der Ertragskennzahlen optisch verbessert.

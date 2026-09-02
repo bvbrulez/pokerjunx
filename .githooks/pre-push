@@ -43,11 +43,33 @@ if [ -z "$new_entries" ]; then
   exit 0
 fi
 
-{
-  printf '\n## %s\n\n' "$(date +%Y-%m-%d)"
-  printf '%s' "$new_entries"
-  cat "$changelog"
-} >"$changelog.tmp"
+today_heading="## $(date +%Y-%m-%d)"
+if grep -Fxq "$today_heading" "$changelog"; then
+  awk -v heading="$today_heading" -v entries="$new_entries" '
+    $0 == heading && !inserted {
+      print
+      print ""
+      printf "%s", entries
+      print ""
+      inserted = 1
+      next
+    }
+    { print }
+  ' "$changelog" >"$changelog.tmp"
+else
+  awk -v heading="$today_heading" -v entries="$new_entries" '
+    $0 == "# Änderungsprotokoll" && !inserted {
+      print
+      print ""
+      print heading
+      print ""
+      printf "%s", entries
+      inserted = 1
+      next
+    }
+    { print }
+  ' "$changelog" >"$changelog.tmp"
+fi
 mv "$changelog.tmp" "$changelog"
 
 git add "$changelog"
