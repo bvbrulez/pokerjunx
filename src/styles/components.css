@@ -5,14 +5,48 @@
 }
 
 .summary-card {
-  background: #eef6fb;
-  border-radius: 0.5rem;
-  padding: 1rem;
+  border: 1px solid;
+  border-radius: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  justify-content: space-between;
+  min-height: 8rem;
+  padding: 1.25rem;
+}
+
+.summary-card-total {
+  background: #e5f5f8;
+  border-color: #a7dce4;
+}
+
+.summary-card-year {
+  background: #eaf0fb;
+  border-color: #b6c7e8;
+}
+
+.summary-card-best {
+  background: #fff6db;
+  border-color: #f0d47a;
+}
+
+.summary-card-worst {
+  background: #fcebea;
+  border-color: #e7b4b0;
+}
+
+.summary-label {
+  color: #4d6474;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
 
 .summary-card strong {
   display: block;
-  font-size: 1.5rem;
+  font-size: clamp(1.2rem, 2vw, 1.65rem);
+  line-height: 1.2;
 }
 
 form {
