@@ -1,0 +1,56 @@
+#!/bin/sh
+
+set -eu
+
+changelog="CHANGELOG.md"
+if [ ! -f "$changelog" ]; then
+  echo "pre-push: $changelog wurde nicht gefunden." >&2
+  exit 1
+fi
+
+if ! git diff --quiet -- "$changelog" || ! git diff --cached --quiet -- "$changelog"; then
+  echo "pre-push: Bitte eigene Änderungen an $changelog zuerst committen." >&2
+  exit 1
+fi
+
+pending_messages=$(mktemp)
+trap 'rm -f "$pending_messages"' EXIT
+
+while read -r local_ref local_sha remote_ref remote_sha; do
+  case "$local_ref" in
+    delete) continue ;;
+  esac
+
+  if [ "$remote_sha" = "0000000000000000000000000000000000000000" ]; then
+    git log --format=%s --reverse "$local_sha" >>"$pending_messages"
+  else
+    git log --format=%s --reverse "$remote_sha..$local_sha" >>"$pending_messages"
+  fi
+done
+
+new_entries=""
+while IFS= read -r message; do
+  case "$message" in
+    "chore: update changelog") continue ;;
+  esac
+  if ! grep -Fq -- "- $message" "$changelog"; then
+    new_entries="${new_entries}- ${message}
+"
+  fi
+done <"$pending_messages"
+
+if [ -z "$new_entries" ]; then
+  exit 0
+fi
+
+{
+  printf '\n## %s\n\n' "$(date +%Y-%m-%d)"
+  printf '%s' "$new_entries"
+  cat "$changelog"
+} >"$changelog.tmp"
+mv "$changelog.tmp" "$changelog"
+
+git add "$changelog"
+git commit -m "chore: update changelog"
+echo "pre-push: CHANGELOG.md wurde aktualisiert. Bitte den Push erneut ausführen." >&2
+exit 1
