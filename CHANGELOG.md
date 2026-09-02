@@ -2,6 +2,7 @@
 
 ## 2026-09-02
 
+- feat: add 2026 tour at Steinhuder Meer
 - feat: create Pokerjunx homepage with On Tour overview
 - docs: update project documentation
 - feat: add poker card favicon

@@ -64,6 +64,7 @@ em { color: var(--orange); font-style: normal; }
 .art-mountains { color: #f2b15d; background: linear-gradient(150deg, #1e5543, #6d9a7d); }
 .art-sea { color: #f2dfc4; background: linear-gradient(150deg, #346f7b, #a5c5ba); }
 .art-city { color: #f5d48a; background: linear-gradient(150deg, #c06a3c, #e7af62); }
+.art-lake { color: #f5d48a; background: linear-gradient(150deg, #225f62, #8dbba7); }
 .tour-card-body { padding: 25px 20px 28px; }
 .tour-location { margin-bottom: 8px; color: var(--orange); font-size: .68rem; font-weight: 800; letter-spacing: .13em; text-transform: uppercase; }
 h3 { margin-bottom: 12px; font-size: 1.55rem; letter-spacing: -.05em; }
