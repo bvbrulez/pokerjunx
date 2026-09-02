@@ -1,3 +1,7 @@
+
+## 2026-09-02
+
+- feat: restrict energy input to authorized users
 # Änderungsprotokoll
 
 ## 2026-09-02
