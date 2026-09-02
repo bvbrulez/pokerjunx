@@ -14,7 +14,8 @@ if ! git diff --quiet -- "$changelog" || ! git diff --cached --quiet -- "$change
 fi
 
 pending_messages=$(mktemp)
-trap 'rm -f "$pending_messages"' EXIT
+new_entries_file=$(mktemp)
+trap 'rm -f "$pending_messages" "$new_entries_file"' EXIT
 
 while read -r local_ref local_sha remote_ref remote_sha; do
   case "$local_ref" in
@@ -28,42 +29,41 @@ while read -r local_ref local_sha remote_ref remote_sha; do
   fi
 done
 
-new_entries=""
 while IFS= read -r message; do
   case "$message" in
     "chore: update changelog") continue ;;
   esac
   if ! grep -Fq -- "- $message" "$changelog"; then
-    new_entries="${new_entries}- ${message}
-"
+    printf '%s\n' "- $message" >>"$new_entries_file"
   fi
 done <"$pending_messages"
 
-if [ -z "$new_entries" ]; then
+if [ ! -s "$new_entries_file" ]; then
   exit 0
 fi
 
 today_heading="## $(date +%Y-%m-%d)"
 if grep -Fxq "$today_heading" "$changelog"; then
-  awk -v heading="$today_heading" -v entries="$new_entries" '
+  awk -v heading="$today_heading" -v entries_file="$new_entries_file" '
     $0 == heading && !inserted {
       print
       print ""
-      printf "%s", entries
-      print ""
+      while ((getline line < entries_file) > 0) print line
+      close(entries_file)
       inserted = 1
       next
     }
     { print }
   ' "$changelog" >"$changelog.tmp"
 else
-  awk -v heading="$today_heading" -v entries="$new_entries" '
+  awk -v heading="$today_heading" -v entries_file="$new_entries_file" '
     $0 == "# Änderungsprotokoll" && !inserted {
       print
       print ""
       print heading
       print ""
-      printf "%s", entries
+      while ((getline line < entries_file) > 0) print line
+      close(entries_file)
       inserted = 1
       next
     }
