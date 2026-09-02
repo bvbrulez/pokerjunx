@@ -45,8 +45,8 @@
 
 .summary-card strong {
   display: block;
-  font-size: clamp(1rem, 1.5vw, 1.25rem);
-  line-height: 1.2;
+  font-size: 0.85rem;
+  line-height: 1.5;
 }
 
 form {
