@@ -13,6 +13,7 @@ const monthNames = [
   "Dezember",
 ];
 const now = new Date();
+const authSection = document.querySelector("#auth-section");
 const authForm = document.querySelector("#auth-form");
 const authStatus = document.querySelector("#auth-status");
 const logoutButton = document.querySelector("#logout-button");
@@ -38,8 +39,8 @@ const supabaseClient = window.SUPABASE_CONFIG?.url && window.SUPABASE_CONFIG?.an
 
 function updateAuthorization(session) {
   const isAuthorized = Boolean(session);
+  authSection.hidden = isAuthorized;
   entrySection.hidden = !isAuthorized;
-  authForm.hidden = isAuthorized;
   logoutButton.hidden = !isAuthorized;
   authStatus.textContent = isAuthorized
     ? `Angemeldet als ${session.user.email}`
