@@ -1,3 +1,7 @@
+
+## 2026-09-02
+
+- feat: automate changelog updates before push
 # Änderungsprotokoll
 
 ## 2026-09-02
