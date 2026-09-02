@@ -3,6 +3,8 @@
 
 ## 2026-09-02
 
+- style: match summary value font size
+
 - style: reduce summary card font size
 
 - fix: keep login credentials out of URL
