@@ -84,22 +84,24 @@
           Angezeigtes Jahr
           <select id="display-year"></select>
         </label>
-        <table>
-          <caption id="table-caption">Ertrag im Jahr</caption>
-          <thead>
-            <tr>
-              <th scope="col">Monat</th>
-              <th scope="col">Erreicht</th>
-            </tr>
-          </thead>
-          <tbody id="overview"></tbody>
-          <tfoot>
-            <tr>
-              <td>Jahressumme</td>
-              <td id="year-total">0,00 kWh</td>
-            </tr>
-          </tfoot>
-        </table>
+        <div class="table-scroll">
+          <table>
+            <caption id="table-caption">Ertrag im Jahr</caption>
+            <thead>
+              <tr>
+                <th scope="col">Monat</th>
+                <th scope="col">Erreicht</th>
+              </tr>
+            </thead>
+            <tbody id="overview"></tbody>
+            <tfoot>
+              <tr>
+                <td>Jahressumme</td>
+                <td id="year-total">0,00 kWh</td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
       </section>
 
       <section aria-labelledby="summary-heading">
@@ -122,16 +124,18 @@
             <strong id="worst-month">Noch keine Daten</strong>
           </div>
         </div>
-        <table>
-          <caption>Ertrag je Jahr</caption>
-          <thead>
-            <tr>
-              <th scope="col">Jahr</th>
-              <th scope="col">Jahreswert</th>
-            </tr>
-          </thead>
-          <tbody id="annual-overview"></tbody>
-        </table>
+        <div class="table-scroll">
+          <table>
+            <caption>Ertrag je Jahr</caption>
+            <thead>
+              <tr>
+                <th scope="col">Jahr</th>
+                <th scope="col">Jahreswert</th>
+              </tr>
+            </thead>
+            <tbody id="annual-overview"></tbody>
+          </table>
+        </div>
       </section>
     </main>
 

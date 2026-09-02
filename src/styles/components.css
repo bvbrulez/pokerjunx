@@ -71,7 +71,7 @@ button {
   border: 1px solid #9bb8c7;
   border-radius: 0.4rem;
   font: inherit;
-  min-height: 2.7rem;
+  min-height: 2.75rem;
   padding: 0.45rem 0.65rem;
 }
 
@@ -89,8 +89,14 @@ button:focus-visible {
   background: #0f4e64;
 }
 
+.table-scroll {
+  overflow-x: auto;
+  width: 100%;
+}
+
 table {
   border-collapse: collapse;
+  min-width: 20rem;
   width: 100%;
 }
 
@@ -126,17 +132,34 @@ tfoot td {
   min-height: 1.5rem;
 }
 
+@media (max-width: 60rem) {
+  .summary-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 @media (max-width: 42rem) {
   form,
   .auth-form {
     grid-template-columns: 1fr;
   }
 
+  button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 30rem) {
   .summary-grid {
     grid-template-columns: 1fr;
   }
 
-  button {
-    width: 100%;
+  main {
+    gap: 1rem;
+  }
+
+  th,
+  td {
+    padding: 0.55rem 0.3rem;
   }
 }
