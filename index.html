@@ -200,7 +200,8 @@
               name="kilowatt-hours"
               type="number"
               min="0"
-              step="0.01"
+              max="999.999"
+              step="0.001"
               inputmode="decimal"
               required
             />
@@ -365,7 +366,17 @@
         const year = Number(yearInput.value);
         const month = Number(monthInput.value);
         const value = Number(hoursInput.value);
-        if (!Number.isInteger(year) || year < 2000 || year > 2100 || !Number.isFinite(value) || value < 0) {
+        const decimalPlaces = (hoursInput.value.split(".")[1] || "").length;
+        if (
+          !form.checkValidity() ||
+          !Number.isInteger(year) ||
+          year < 2000 ||
+          year > 2100 ||
+          !Number.isFinite(value) ||
+          value < 0 ||
+          value > 999.999 ||
+          decimalPlaces > 3
+        ) {
           status.textContent = "Bitte gültige Werte eingeben.";
           return;
         }
