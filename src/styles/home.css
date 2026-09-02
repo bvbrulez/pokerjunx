@@ -61,6 +61,9 @@ em { color: var(--orange); font-style: normal; }
 .tour-card-top { display: flex; justify-content: space-between; padding: 18px 20px 0; color: var(--muted); font-size: .7rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
 .tour-number { color: var(--orange); }
 .tour-art { display: grid; height: 190px; margin: 0 20px; place-items: center; font-size: 7rem; line-height: 1; }
+.tour-photo { display: block; background-position: center; background-size: cover; }
+.photo-lake { background-image: linear-gradient(180deg, rgba(18, 59, 42, .08), rgba(18, 59, 42, .32)), url("../images/steinhuder-meer.jpg"); }
+.photo-valencia { background-image: linear-gradient(180deg, rgba(18, 59, 42, .04), rgba(18, 59, 42, .3)), url("../images/valencia-landmark.jpg"); }
 .art-mountains { color: #f2b15d; background: linear-gradient(150deg, #1e5543, #6d9a7d); }
 .art-sea { color: #f2dfc4; background: linear-gradient(150deg, #346f7b, #a5c5ba); }
 .art-city { color: #f5d48a; background: linear-gradient(150deg, #c06a3c, #e7af62); }
