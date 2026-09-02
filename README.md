@@ -1,6 +1,7 @@
 # Pokerjunx
 
-Statische GitHub-Pages-Seite der Pokerjunx.
+Statische GitHub-Pages-Homepage der Pokerjunx: fünf Freunde, gemeinsame Wochenenden
+und eine Übersicht vergangener Touren unter „On Tour“.
 
 ## Commit-Messages
 

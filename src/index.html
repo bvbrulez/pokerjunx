@@ -3,10 +3,124 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pokerjunx</title>
+    <meta
+      name="description"
+      content="Pokerjunx – fünf Freunde, ein Wochenende, jede Menge Geschichten."
+    />
+    <title>Pokerjunx | Gemeinsam unterwegs</title>
     <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles/base.css" />
+    <link rel="stylesheet" href="styles/components.css" />
+    <link rel="stylesheet" href="styles/home.css" />
   </head>
   <body>
-    Hallo Pokerjunx
+    <header class="site-header">
+      <nav class="navigation container" aria-label="Hauptnavigation">
+        <a class="brand" href="#start" aria-label="Pokerjunx Startseite">
+          <span class="brand-mark" aria-hidden="true">♠</span>
+          <span>Pokerjunx</span>
+        </a>
+        <div class="nav-links">
+          <a href="#ueber-uns">Über uns</a>
+          <a href="#on-tour">On Tour</a>
+        </div>
+      </nav>
+    </header>
+
+    <main id="start">
+      <section class="hero">
+        <div class="container hero-content">
+          <p class="eyebrow">Fünf Freunde. Ein Wochenende. Unvergessliche Hände.</p>
+          <h1>Wir spielen nicht nur Karten.<br /><em>Wir schreiben Geschichten.</em></h1>
+          <p class="hero-copy">
+            Die Pokerjunx treffen sich mindestens einmal im Jahr, packen die Karten ein
+            und machen sich gemeinsam auf den Weg.
+          </p>
+          <a class="button button-primary" href="#on-tour">Unsere Touren entdecken <span>↓</span></a>
+        </div>
+        <div class="hero-suits" aria-hidden="true">♣ ♦ ♥ ♠</div>
+      </section>
+
+      <section class="intro section" id="ueber-uns">
+        <div class="container intro-grid">
+          <div>
+            <p class="eyebrow">Die Pokerjunx</p>
+            <h2>Fünf Freunde,<br /><em>ein Ritual.</em></h2>
+          </div>
+          <div class="intro-text">
+            <p>
+              Was als gemeinsamer Spieleabend begann, ist längst ein fester Termin im
+              Kalender. Ein Wochenende raus aus dem Alltag, rein ins Abenteuer – mit
+              gutem Essen, schlechten Witzen und natürlich einer Runde Poker.
+            </p>
+            <div class="member-count"><strong>5</strong><span>Junx<br />am Tisch</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="tours section" id="on-tour">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Unsere gemeinsamen Abenteuer</p>
+              <h2>On <em>Tour</em></h2>
+            </div>
+            <p class="section-note">Jede Tour ein neues Kapitel.<br />Jede Hand eine Geschichte.</p>
+          </div>
+
+          <div class="tour-grid">
+            <article class="tour-card tour-card-featured">
+              <div class="tour-card-top"><span class="tour-number">01</span><span>2025</span></div>
+              <div class="tour-art art-mountains" aria-hidden="true"><span>♠</span></div>
+              <div class="tour-card-body">
+                <p class="tour-location">Garmisch-Partenkirchen</p>
+                <h3>All-in in den Alpen</h3>
+                <p>Gipfel, Hüttengaudi und die Kartenrunde mit dem besten Ausblick.</p>
+                <details>
+                  <summary>Tour ansehen <span>+</span></summary>
+                  <p class="tour-details">Drei Tage zwischen Bergluft und Bluffs. Highlight: Sonnenaufgang auf dem Wank.</p>
+                </details>
+              </div>
+            </article>
+
+            <article class="tour-card">
+              <div class="tour-card-top"><span class="tour-number">02</span><span>2024</span></div>
+              <div class="tour-art art-sea" aria-hidden="true"><span>♥</span></div>
+              <div class="tour-card-body">
+                <p class="tour-location">Ostsee</p>
+                <h3>Royal Flush am Meer</h3>
+                <p>Salzige Luft, lange Nächte und ein Pot, der Wellen schlägt.</p>
+                <details>
+                  <summary>Tour ansehen <span>+</span></summary>
+                  <p class="tour-details">Strandspaziergänge, Fischbrötchen und die knappste Entscheidung der Tourgeschichte.</p>
+                </details>
+              </div>
+            </article>
+
+            <article class="tour-card">
+              <div class="tour-card-top"><span class="tour-number">03</span><span>2023</span></div>
+              <div class="tour-art art-city" aria-hidden="true"><span>♦</span></div>
+              <div class="tour-card-body">
+                <p class="tour-location">Dresden</p>
+                <h3>Bluffen an der Elbe</h3>
+                <p>Kultur, Kellergewölbe und ein Finale, das keiner kommen sah.</p>
+                <details>
+                  <summary>Tour ansehen <span>+</span></summary>
+                  <p class="tour-details">Altstadt bei Tag, Karten bei Nacht – Dresden hat uns alle überrascht.</p>
+                </details>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-content">
+        <a class="brand" href="#start"><span class="brand-mark" aria-hidden="true">♠</span><span>Pokerjunx</span></a>
+        <p>Seit immer. Unterwegs für immer.</p>
+        <a href="#start" class="back-to-top" aria-label="Nach oben">↑</a>
+      </div>
+    </footer>
   </body>
 </html>
