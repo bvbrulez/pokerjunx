@@ -3,6 +3,8 @@
 
 ## 2026-09-02
 
+- fix: keep login credentials out of URL
+
 - fix: hide login section after sign in
 
 - chore: group changelog entries by date
