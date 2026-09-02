@@ -37,6 +37,10 @@ const supabaseClient = window.SUPABASE_CONFIG?.url && window.SUPABASE_CONFIG?.an
   ? supabase.createClient(window.SUPABASE_CONFIG.url, window.SUPABASE_CONFIG.anonKey)
   : null;
 
+if (window.location.search) {
+  window.history.replaceState({}, document.title, window.location.pathname + window.location.hash);
+}
+
 function updateAuthorization(session) {
   const isAuthorized = Boolean(session);
   authSection.hidden = isAuthorized;
