@@ -260,8 +260,9 @@
       </section>
     </main>
 
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase-config.js"></script>
     <script>
-      const STORAGE_KEY = "balkonkraftwerk-ertraege";
       const monthNames = [
         "Januar",
         "Februar",
@@ -290,13 +291,24 @@
       const summaryYearTotal = document.querySelector("#summary-year-total");
       const annualOverview = document.querySelector("#annual-overview");
       const status = document.querySelector("#status");
+      const supabaseClient = window.SUPABASE_CONFIG?.url && window.SUPABASE_CONFIG?.anonKey
+        ? supabase.createClient(window.SUPABASE_CONFIG.url, window.SUPABASE_CONFIG.anonKey)
+        : null;
 
-      function loadEntries() {
-        try {
-          return JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
-        } catch {
-          return {};
+      async function loadEntries() {
+        if (!supabaseClient) {
+          throw new Error("Supabase ist noch nicht konfiguriert.");
         }
+        const { data, error } = await supabaseClient
+          .from("monthly_energy")
+          .select("year, month, kilowatt_hours");
+        if (error) throw error;
+        return Object.fromEntries(
+          data.map((entry) => [
+            `${entry.year}-${String(entry.month).padStart(2, "0")}`,
+            Number(entry.kilowatt_hours),
+          ]),
+        );
       }
 
       function formatEnergy(value) {
@@ -307,7 +319,10 @@
       }
 
       function renderYears(entries) {
-        const years = new Set([String(now.getFullYear()), ...Object.keys(entries).map((key) => key.slice(0, 4))]);
+        const years = new Set([
+          String(now.getFullYear()),
+          ...Object.keys(entries).map((key) => key.slice(0, 4)),
+        ]);
         const selectedYear = displayYear.value || String(now.getFullYear());
         displayYear.replaceChildren(
           ...[...years]
@@ -317,8 +332,8 @@
         );
       }
 
-      function render() {
-        const entries = loadEntries();
+      async function render() {
+        const entries = await loadEntries();
         renderYears(entries);
         const selectedYear = displayYear.value;
         const annualTotals = {};
@@ -360,8 +375,8 @@
       }
 
       yearInput.value = now.getFullYear();
-      displayYear.addEventListener("change", render);
-      form.addEventListener("submit", (event) => {
+      displayYear.addEventListener("change", () => render().catch(showError));
+      form.addEventListener("submit", async (event) => {
         event.preventDefault();
         const year = Number(yearInput.value);
         const month = Number(monthInput.value);
@@ -380,16 +395,33 @@
           status.textContent = "Bitte gültige Werte eingeben.";
           return;
         }
-        const entries = loadEntries();
-        entries[`${year}-${String(month).padStart(2, "0")}`] = value;
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(entries));
+        if (!supabaseClient) {
+          showError(new Error("Supabase ist noch nicht konfiguriert."));
+          return;
+        }
+        const { error } = await supabaseClient.from("monthly_energy").upsert(
+          {
+            year,
+            month,
+            kilowatt_hours: value,
+          },
+          { onConflict: "year,month" },
+        );
+        if (error) {
+          showError(error);
+          return;
+        }
         displayYear.value = String(year);
-        render();
+        await render();
         status.textContent = `${monthNames[month - 1]} ${year} wurde gespeichert.`;
         hoursInput.value = "";
       });
 
-      render();
+      function showError(error) {
+        status.textContent = `Die Daten konnten nicht geladen werden: ${error.message}`;
+      }
+
+      render().catch(showError);
     </script>
   </body>
 </html>
