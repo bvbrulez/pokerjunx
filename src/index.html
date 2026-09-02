@@ -19,7 +19,24 @@
     </header>
 
     <main>
-      <section aria-labelledby="entry-heading">
+      <section aria-labelledby="auth-heading">
+        <h2 id="auth-heading">Zugang</h2>
+        <form class="auth-form" id="auth-form">
+          <label for="email">
+            E-Mail
+            <input id="email" name="email" type="email" autocomplete="username" required />
+          </label>
+          <label for="password">
+            Passwort
+            <input id="password" name="password" type="password" autocomplete="current-password" required />
+          </label>
+          <button type="submit">Anmelden</button>
+        </form>
+        <p id="auth-status" role="status" aria-live="polite"></p>
+        <button id="logout-button" type="button" hidden>Abmelden</button>
+      </section>
+
+      <section id="entry-section" aria-labelledby="entry-heading" hidden>
         <h2 id="entry-heading">Kilowattstunden eintragen</h2>
         <form id="energy-form">
           <label for="month">

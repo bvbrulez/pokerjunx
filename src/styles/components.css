@@ -21,6 +21,10 @@ form {
   grid-template-columns: repeat(3, 1fr);
 }
 
+.auth-form {
+  grid-template-columns: repeat(2, 1fr);
+}
+
 label {
   display: grid;
   font-weight: 600;
@@ -89,7 +93,8 @@ tfoot td {
 }
 
 @media (max-width: 42rem) {
-  form {
+  form,
+  .auth-form {
     grid-template-columns: 1fr;
   }
 

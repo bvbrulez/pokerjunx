@@ -18,21 +18,26 @@ Statische GitHub-Pages-Seite zur Erfassung monatlicher Energieerträge. Die Wert
 
    alter table public.monthly_energy enable row level security;
 
+   drop policy if exists "Allow reading monthly energy" on public.monthly_energy;
+   drop policy if exists "Allow adding monthly energy" on public.monthly_energy;
+   drop policy if exists "Allow updating monthly energy" on public.monthly_energy;
+
    create policy "Allow reading monthly energy"
      on public.monthly_energy for select
-     to anon using (true);
+     to anon, authenticated using (true);
 
    create policy "Allow adding monthly energy"
      on public.monthly_energy for insert
-     to anon with check (true);
+     to authenticated with check (true);
 
    create policy "Allow updating monthly energy"
      on public.monthly_energy for update
-     to anon using (true) with check (true);
+     to authenticated using (true) with check (true);
    ```
 
-3. In `src/supabase-config.js` die Supabase-Projekt-URL und den **anon public key** eintragen.
-4. Änderungen committen und nach `main` pushen. Die GitHub-Action veröffentlicht die Seite anschließend automatisch.
+3. Unter **Authentication → Users** für jeden berechtigten Nutzer einen Account anlegen.
+4. In `src/supabase-config.js` die Supabase-Projekt-URL und den **anon public key** eintragen.
+5. Änderungen committen und nach `main` pushen. Die GitHub-Action veröffentlicht die Seite anschließend automatisch.
 
 Der `anon`-Key darf in einer statischen Website veröffentlicht werden. Der `service_role`-Key darf niemals in diese Datei oder in den Browser gelangen.
 

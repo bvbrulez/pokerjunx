@@ -13,6 +13,10 @@ const monthNames = [
   "Dezember",
 ];
 const now = new Date();
+const authForm = document.querySelector("#auth-form");
+const authStatus = document.querySelector("#auth-status");
+const logoutButton = document.querySelector("#logout-button");
+const entrySection = document.querySelector("#entry-section");
 const form = document.querySelector("#energy-form");
 const yearInput = document.querySelector("#year");
 const monthInput = document.querySelector("#month");
@@ -31,6 +35,16 @@ const status = document.querySelector("#status");
 const supabaseClient = window.SUPABASE_CONFIG?.url && window.SUPABASE_CONFIG?.anonKey
   ? supabase.createClient(window.SUPABASE_CONFIG.url, window.SUPABASE_CONFIG.anonKey)
   : null;
+
+function updateAuthorization(session) {
+  const isAuthorized = Boolean(session);
+  entrySection.hidden = !isAuthorized;
+  authForm.hidden = isAuthorized;
+  logoutButton.hidden = !isAuthorized;
+  authStatus.textContent = isAuthorized
+    ? `Angemeldet als ${session.user.email}`
+    : "Bitte anmelden, um Werte einzutragen.";
+}
 
 async function loadEntries() {
   if (!supabaseClient) {
@@ -131,6 +145,27 @@ function showError(error) {
   status.textContent = `Die Daten konnten nicht geladen werden: ${error.message}`;
 }
 
+authForm.addEventListener("submit", async (event) => {
+  event.preventDefault();
+  if (!supabaseClient) {
+    authStatus.textContent = "Supabase ist noch nicht konfiguriert.";
+    return;
+  }
+  const email = document.querySelector("#email").value;
+  const password = document.querySelector("#password").value;
+  const { error } = await supabaseClient.auth.signInWithPassword({ email, password });
+  if (error) {
+    authStatus.textContent = `Anmeldung fehlgeschlagen: ${error.message}`;
+    return;
+  }
+  authForm.reset();
+});
+
+logoutButton.addEventListener("click", async () => {
+  const { error } = await supabaseClient.auth.signOut();
+  if (error) authStatus.textContent = `Abmeldung fehlgeschlagen: ${error.message}`;
+});
+
 yearInput.value = now.getFullYear();
 displayYear.addEventListener("change", () => render().catch(showError));
 form.addEventListener("submit", async (event) => {
@@ -173,5 +208,18 @@ form.addEventListener("submit", async (event) => {
   status.textContent = `${monthNames[month - 1]} ${year} wurde gespeichert.`;
   hoursInput.value = "";
 });
+
+if (supabaseClient) {
+  supabaseClient.auth.onAuthStateChange((_event, session) => updateAuthorization(session));
+  supabaseClient.auth.getSession().then(({ data, error }) => {
+    if (error) {
+      authStatus.textContent = `Authentifizierung fehlgeschlagen: ${error.message}`;
+      return;
+    }
+    updateAuthorization(data.session);
+  });
+} else {
+  updateAuthorization(null);
+}
 
 render().catch(showError);
