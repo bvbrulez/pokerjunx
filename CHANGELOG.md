@@ -3,6 +3,9 @@
 
 ## 2026-09-02
 
+- chore: group changelog entries by date
+- fix: handle grouped changelog entries
+
 - Hallo-Welt-Startseite mit GitHub-Pages-Deployment erstellt.
 - GitHub Pages für automatische Deployments aktiviert.
 - Monatliche Erfassung von Energieerträgen ergänzt.
