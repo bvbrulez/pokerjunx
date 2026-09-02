@@ -60,7 +60,7 @@
       .summary-grid {
         display: grid;
         gap: 1rem;
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(4, 1fr);
       }
 
       .summary-card {
@@ -246,6 +246,14 @@
             <span>Jahreswert <span id="summary-year"></span></span>
             <strong id="summary-year-total">0,00 kWh</strong>
           </div>
+          <div class="summary-card">
+            <span>Bester Monat</span>
+            <strong id="best-month">Noch keine Daten</strong>
+          </div>
+          <div class="summary-card">
+            <span>Schlechtester Monat</span>
+            <strong id="worst-month">Noch keine Daten</strong>
+          </div>
         </div>
         <table>
           <caption>Ertrag je Jahr</caption>
@@ -289,6 +297,8 @@
       const allTimeTotal = document.querySelector("#all-time-total");
       const summaryYear = document.querySelector("#summary-year");
       const summaryYearTotal = document.querySelector("#summary-year-total");
+      const bestMonth = document.querySelector("#best-month");
+      const worstMonth = document.querySelector("#worst-month");
       const annualOverview = document.querySelector("#annual-overview");
       const status = document.querySelector("#status");
       const supabaseClient = window.SUPABASE_CONFIG?.url && window.SUPABASE_CONFIG?.anonKey
@@ -337,10 +347,12 @@
         renderYears(entries);
         const selectedYear = displayYear.value;
         const annualTotals = {};
+        const enteredMonths = [];
         Object.entries(entries).forEach(([key, value]) => {
           const year = key.slice(0, 4);
           if (typeof value === "number" && Number.isFinite(value)) {
             annualTotals[year] = (annualTotals[year] || 0) + value;
+            enteredMonths.push({ key, value });
           }
         });
         let total = 0;
@@ -362,6 +374,15 @@
         summaryYear.textContent = selectedYear;
         summaryYearTotal.textContent = formatEnergy(annualTotals[selectedYear] || 0);
         annualTotals[selectedYear] = annualTotals[selectedYear] || 0;
+        if (enteredMonths.length > 0) {
+          const best = enteredMonths.reduce((result, entry) => (entry.value > result.value ? entry : result));
+          const worst = enteredMonths.reduce((result, entry) => (entry.value < result.value ? entry : result));
+          bestMonth.textContent = `${formatMonthKey(best.key)}: ${formatEnergy(best.value)}`;
+          worstMonth.textContent = `${formatMonthKey(worst.key)}: ${formatEnergy(worst.value)}`;
+        } else {
+          bestMonth.textContent = "Noch keine Daten";
+          worstMonth.textContent = "Noch keine Daten";
+        }
         annualOverview.replaceChildren(
           ...Object.keys(annualTotals)
             .sort()
@@ -372,6 +393,11 @@
               return row;
             }),
         );
+      }
+
+      function formatMonthKey(key) {
+        const [year, month] = key.split("-");
+        return `${monthNames[Number(month) - 1]} ${year}`;
       }
 
       yearInput.value = now.getFullYear();
