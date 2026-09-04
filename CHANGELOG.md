@@ -1,5 +1,12 @@
 # Änderungsprotokoll
 
+## 2026-09-04
+
+- feat: update historical tour destinations
+- feat: add tours from 2011 to 2019
+- feat: add tours from 1998 to 2010
+- feat: add destination photos to tour cards
+
 ## 2026-09-02
 
 - fix: correct 2024 tour destination to Valencia, Spain
