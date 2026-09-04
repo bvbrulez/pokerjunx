@@ -61,6 +61,34 @@ em { color: var(--orange); font-style: normal; }
 .tour-card-top { display: flex; justify-content: space-between; padding: 18px 20px 0; color: var(--muted); font-size: .7rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
 .tour-number { color: var(--orange); }
 .tour-art { display: grid; height: 190px; margin: 0 20px; place-items: center; font-size: 7rem; line-height: 1; }
+.tour-grid .tour-card .tour-art { display: block; background-position: center; background-size: cover; }
+.tour-grid .tour-card:nth-child(1) .tour-art { background-image: url("../images/tours/2026.jpg"); }
+.tour-grid .tour-card:nth-child(2) .tour-art { background-image: url("../images/tours/2025.jpg"); }
+.tour-grid .tour-card:nth-child(3) .tour-art { background-image: url("../images/tours/2024.jpg"); }
+.tour-grid .tour-card:nth-child(4) .tour-art { background-image: url("../images/tours/2023.jpg"); }
+.tour-grid .tour-card:nth-child(5) .tour-art { background-image: url("../images/tours/2022.jpg"); }
+.tour-grid .tour-card:nth-child(6) .tour-art { background-image: url("../images/tours/2021.jpg"); }
+.tour-grid .tour-card:nth-child(7) .tour-art { background-image: url("../images/tours/2020.jpg"); }
+.tour-grid .tour-card:nth-child(8) .tour-art { background-image: url("../images/tours/2019.jpg"); }
+.tour-grid .tour-card:nth-child(9) .tour-art { background-image: url("../images/tours/2018.jpg"); }
+.tour-grid .tour-card:nth-child(10) .tour-art { background-image: url("../images/tours/2017.jpg"); }
+.tour-grid .tour-card:nth-child(11) .tour-art { background-image: url("../images/tours/2016.jpg"); }
+.tour-grid .tour-card:nth-child(12) .tour-art { background-image: url("../images/tours/2015.jpg"); }
+.tour-grid .tour-card:nth-child(13) .tour-art { background-image: url("../images/tours/2014.jpg"); }
+.tour-grid .tour-card:nth-child(14) .tour-art { background-image: url("../images/tours/2013.jpg"); }
+.tour-grid .tour-card:nth-child(15) .tour-art { background-image: url("../images/tours/2012.jpg"); }
+.tour-grid .tour-card:nth-child(16) .tour-art { background-image: url("../images/tours/2011.jpg"); }
+.tour-grid .tour-card:nth-child(17) .tour-art { background-image: url("../images/tours/2010.jpg"); }
+.tour-grid .tour-card:nth-child(18) .tour-art { background-image: url("../images/tours/2009.jpg"); }
+.tour-grid .tour-card:nth-child(19) .tour-art { background-image: url("../images/tours/2008.jpg"); }
+.tour-grid .tour-card:nth-child(20) .tour-art { background-image: url("../images/tours/2007.jpg"); }
+.tour-grid .tour-card:nth-child(21) .tour-art { background-image: url("../images/tours/2005.jpg"); }
+.tour-grid .tour-card:nth-child(22) .tour-art { background-image: url("../images/tours/2003.jpg"); }
+.tour-grid .tour-card:nth-child(23) .tour-art { background-image: url("../images/tours/2002.jpg"); }
+.tour-grid .tour-card:nth-child(24) .tour-art { background-image: url("../images/tours/2001.jpg"); }
+.tour-grid .tour-card:nth-child(25) .tour-art { background-image: url("../images/tours/2000.jpg"); }
+.tour-grid .tour-card:nth-child(26) .tour-art { background-image: url("../images/tours/1999.jpg"); }
+.tour-grid .tour-card:nth-child(27) .tour-art { background-image: url("../images/tours/1998.jpg"); }
 .tour-photo { display: block; background-position: center; background-size: cover; }
 .photo-lake { background-image: linear-gradient(180deg, rgba(18, 59, 42, .08), rgba(18, 59, 42, .32)), url("../images/steinhuder-meer.jpg"); }
 .photo-valencia { background-image: linear-gradient(180deg, rgba(18, 59, 42, .04), rgba(18, 59, 42, .3)), url("../images/valencia-landmark.jpg"); }

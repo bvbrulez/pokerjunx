@@ -3,7 +3,8 @@
 Statische GitHub-Pages-Homepage der Pokerjunx: fünf Freunde, gemeinsame Wochenenden
 und eine Übersicht vergangener Touren unter „On Tour“.
 
-Das Tourfoto des Steinhuder Meers stammt aus [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:SteinhuderMeer.jpg).
+Die Tourfotos stammen aus Wikimedia Commons und sind lokal im Verzeichnis
+`src/images/tours` hinterlegt.
 
 ## Commit-Messages
 

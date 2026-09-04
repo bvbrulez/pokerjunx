@@ -13,4 +13,5 @@
 - fix: update tour history with confirmed destinations and dates
 - feat: extend tour history from 2011 to 2019
 - feat: extend tour history from 1998 to 2010
+- feat: add destination photos to all tour cards
 - fix: align 2024 tour artwork with Groningen destination
