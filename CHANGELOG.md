@@ -11,4 +11,5 @@
 - feat: add poker card favicon
 - feat: simplify Pokerjunx landing page
 - fix: update tour history with confirmed destinations and dates
+- feat: extend tour history from 2011 to 2019
 - fix: align 2024 tour artwork with Groningen destination
