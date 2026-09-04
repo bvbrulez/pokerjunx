@@ -3,8 +3,7 @@
 Statische GitHub-Pages-Homepage der Pokerjunx: fünf Freunde, gemeinsame Wochenenden
 und eine Übersicht vergangener Touren unter „On Tour“.
 
-Die Tourfotos stammen aus Wikimedia Commons: [Steinhuder Meer](https://commons.wikimedia.org/wiki/File:SteinhuderMeer.jpg)
-und [Almudín in Valencia](https://commons.wikimedia.org/wiki/File:The_Almud%C3%ADn_and_Fuente_de_San_Lluis_Bertran_in_Ciutat_Vella,_Valencia,_Spain.jpg).
+Das Tourfoto des Steinhuder Meers stammt aus [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:SteinhuderMeer.jpg).
 
 ## Commit-Messages
 
